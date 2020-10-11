@@ -1,0 +1,15 @@
+{
+  "name": "@revue/vue",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@revue/core": "^1.0.0",
+    "@vue/reactivity": "^3.0.0"
+  }
+}
