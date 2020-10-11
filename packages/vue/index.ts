@@ -1,10 +1,12 @@
-import { ref, readonly } from "@vue/reactivity";
-import { init } from "@revue/core";
+import { readonly } from "@vue/reactivity";
+import { init, Wrap } from "@revue/core";
 
 export * from "@revue/core";
 
-export default function initRevueState<S>(state: S) {
-  const wrappedState = ref(state);
+type Initializer = <S>(s: S) => Wrap<S>
+
+export default function initRevueState<S>(state: S, initializer: Initializer) {
+  const wrappedState = initializer(state);
   init(wrappedState);
   return readonly(wrappedState);
 }

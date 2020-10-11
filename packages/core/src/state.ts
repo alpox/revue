@@ -3,10 +3,10 @@ import { effectEvent, EventHandler, Event } from "./eventing";
 import { coeffect, injectCofx } from "./coeffects";
 import { regFx } from "./effects";
 
-type Wrap<S = any> = { value: S };
+export type Wrap<S = any> = { value: S };
 
-type StateHandler<S> = (state: S, event: Event<any>) => S;
-type EffectHandler<S> = EventHandler<{ state: S }>;
+export type StateHandler<S> = (state: S, event: Event<any>) => S;
+export type EffectHandler<S> = EventHandler<{ state: S }>;
 
 let internalState: Wrap;
 
