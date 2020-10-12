@@ -6,7 +6,7 @@ import { regFx } from "./effects";
 export type Wrap<S = any> = { value: S };
 
 export type StateHandler<S> = (state: S, event: Event<any>) => S;
-export type EffectHandler<S> = EventHandler<{ state: S }>;
+export type EffectHandler<S> = EventHandler<S>;
 
 let internalState: Wrap;
 
@@ -20,10 +20,10 @@ export const init = <S>(state: Wrap<S>): Wrap<S> => {
   return internalState
 }
 
-export const event = <S>(
+export const event = <S, C = {}>(
   id: string,
   interceptors: Array<Interceptor>,
-  fn: EffectHandler<S>
+  fn: EffectHandler<C & { state: S }>
 ) =>
   effectEvent(
     id,

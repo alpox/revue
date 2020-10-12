@@ -1,13 +1,11 @@
 import { Interceptor } from "./interceptor";
 
-export type CoeffectHandler<Cofx = any> = <Value, PrevCofx>(
+export type CoeffectHandler<Cofx = any, Value = any> = <PrevCofx>(
   coeffects: PrevCofx,
   value: Value
 ) => PrevCofx & Cofx;
 
-type CoeffectRegistry = Map<string, CoeffectHandler>;
-
-const coeffects: CoeffectRegistry = new Map();
+const coeffects = new Map<string, CoeffectHandler>();
 
 export function injectCofx<Cofx>(cofx: string, value?: Cofx): Interceptor {
   const coeffectHandler = coeffects.get(cofx);
@@ -23,7 +21,7 @@ export function injectCofx<Cofx>(cofx: string, value?: Cofx): Interceptor {
   };
 }
 
-export function coeffect<Handler extends CoeffectHandler>(
+export function coeffect<V, Handler extends CoeffectHandler<V>>(
   id: string,
   fn: Handler
 ): string {
